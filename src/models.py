@@ -7,6 +7,44 @@ from eralchemy2 import render_er
 
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = 'user'
+    # Here we define columns for the table person
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    username = Column(String(250), nullable=False)
+    first_tname = Column(String(250), nullable=False)
+    last_name = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+
+class Follower(Base):
+    __tablename__ = 'follower'
+    user_from_id = Column(Integer, primary_key=True)
+    user_to_id = Column(Integer, primary_key=True)
+
+class Comment(Base):
+    __tablename__ = 'comment'
+    id = Column(Integer, primary_key=True)
+    comment_text = Column(String(250), nullable=False)
+    author_id = Column(Integer, primary_key=True)
+    post_id = Column(Integer, primary_key=True)
+
+class Media(Base):
+    __tablename__ = 'media'
+    # Here we define columns for the table person
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    type = Column(String(250), nullable=False)
+    url = Column(String(250), nullable=False)
+    post_id = Column(Integer, primary_key=True)
+
+class Post(Base):
+    __tablename__ = 'post'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, primary_key=True)
+
+    
+
 class Person(Base):
     __tablename__ = 'person'
     # Here we define columns for the table person
